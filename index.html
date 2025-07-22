@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI 项目 - Utalk -version 1.1</title>
+    <title>Welcome to CLS's Homepage</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -12,10 +12,51 @@
             color: #333;
             margin: 0;
             padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             min-height: 100vh;
+            display: flex;
+        }
+
+        /* 目录样式 */
+        .sidebar {
+            width: 200px;
+            background-color: #161B22;
+            padding: 20px 0;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+            position: sticky;
+            top: 0;
+            height: 100vh;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar li {
+            margin: 10px 0;
+        }
+
+        .sidebar a {
+            color: #c9d1d9;
+            text-decoration: none;
+            padding: 10px 20px;
+            display: block;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar a:hover {
+            background-color: #21262d;
+            color: white;
+        }
+
+        /* 主内容区域 */
+        .main-content {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .container {
@@ -25,6 +66,7 @@
             padding: 40px;
             width: 80%;
             max-width: 800px;
+            margin-bottom: 30px;
         }
 
         h1 {
@@ -64,6 +106,16 @@
             margin-top: 20px;
         }
 
+        .turn-btn {
+            display: inline-block;
+            background-color: #DB7093;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 20px;
+        }
+
         .download-btn:hover {
             background-color: #0056b3;
             text-decoration: none;
@@ -83,30 +135,67 @@
             padding: 2px 5px;
             margin: 0 2px;
         }
+
+        /* 锚点目标元素样式 */
+        .section-target {
+            scroll-margin-top: 20px;
+        }
+
     </style>
 </head>
 
 <body>
-    <div class="container">
-        <h1>AI 项目 - Utalk -version 1.1</h1>
-        <p>AI 是一个开源项目，提供了生成文本、图片和视频的工具，包括高质量视频生成。该项目设计简单高效，基于 Python，易于使用。</p>
-
-        <h2>功能特性</h2>
+    <!-- 左侧目录 -->
+    <nav class="sidebar">
         <ul>
-            <li><strong>文本生成</strong>：根据给定的提示生成创意且连贯的文本。</li>
-            <li><strong>图片生成</strong>：从文本描述中创建独特图片。</li>
-            <li><strong>视频生成</strong>：根据文本提示生成视频。</li>
-            <li><strong>高质量视频生成</strong>：根据文本描述生成高分辨率、细节丰富的视频。</li>
+            <li><a href="#medal-lottery">Medal lottery 魔盒Pix</a></li>
+            <li><a href="#ai-project">AI 项目 - Utalk</a></li>
         </ul>
+    </nav>
 
-        <h2>下载方式</h2>
-        <a href="https://github.com/CLSshizhuoyu/ai/archive/refs/heads/main.zip" class="download-btn">点击下载 ZIP</a>
+    <!-- 主内容区域 -->
+    <div class="main-content">
+        <!-- Medal lottery 魔盒Pix 部分 -->
+        <div class="container">
+            <div id="medal-lottery" class="section-target">
+                <h1>Medal lottery 魔盒Pix</h1>
+                <h2>二次元抽奖机配套的软件项目，提供了多样的功能</h2>
+                <a href="https://clsshizhuoyu.github.io/ml.github.io/" class="turn-btn">前往官网</a>
+            </div>
+        </div>
+        
+        <!-- AI 项目部分 -->
+        <div class="container">
+            <div class="section-target">
+                <h1>AI 项目 - Utalk -version 1.1</h1>
+                <p>AI 是一个开源项目，提供了生成文本、图片和视频的工具，包括高质量视频生成。该项目设计简单高效，基于 Python，易于使用。</p>
+            </div>
 
-        <h2>体验项目</h2>
-        <p>快下载后进入 <strong>README.py</strong> 体验吧！</p>
+            <div class="section-target">
+                <h2>功能特性</h2>
+                <ul>
+                    <li><strong>文本生成</strong>：根据给定的提示生成创意且连贯的文本。</li>
+                    <li><strong>图片生成</strong>：从文本描述中创建独特图片。</li>
+                    <li><strong>视频生成</strong>：根据文本提示生成视频。</li>
+                    <li><strong>高质量视频生成</strong>：根据文本描述生成高分辨率、细节丰富的视频。</li>
+                </ul>
+            </div>
 
-        <h2>查看测试结果</h2>
-        <p><a href="https://github.com/CLSshizhuoyu/ai/blob/main/testResult.md">查看 初高中题目 回答结果</a></p>
+            <div class="section-target">
+                <h2>下载方式</h2>
+                <a href="https://github.com/CLSshizhuoyu/ai/archive/refs/heads/main.zip" class="download-btn">点击下载 ZIP</a>
+            </div>
+
+            <div class="section-target">
+                <h2>体验项目</h2>
+                <p>快下载后进入 <strong>README.py</strong> 体验吧！</p>
+            </div>
+
+            <div class="section-target">
+                <h2>查看测试结果</h2>
+                <p><a href="https://github.com/CLSshizhuoyu/ai/blob/main/testResult.md">查看 初高中题目 回答结果</a></p>
+            </div>
+        </div>
     </div>
 </body>
 
