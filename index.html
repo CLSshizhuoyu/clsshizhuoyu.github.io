@@ -13,36 +13,43 @@
             margin: 0;
             padding: 0;
             min-height: 100vh;
-            display: flex;
         }
 
-        /* 目录样式 */
+        /* 目录基础样式 */
         .sidebar {
-            width: 200px;
             background-color: #161B22;
-            padding: 20px 0;
-            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
-            position: sticky;
-            top: 0;
-            height: 100vh;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .sidebar-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none; /* 隐藏Firefox滚动条 */
+        }
+
+        /* 隐藏WebKit浏览器滚动条 */
+        .sidebar-wrapper::-webkit-scrollbar {
+            display: none;
         }
 
         .sidebar ul {
             list-style: none;
             padding: 0;
             margin: 0;
+            white-space: nowrap;
         }
 
         .sidebar li {
-            margin: 10px 0;
+            display: inline-block;
         }
 
         .sidebar a {
             color: #c9d1d9;
             text-decoration: none;
-            padding: 10px 20px;
+            padding: 12px 20px;
             display: block;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s, color 0.3s;
         }
 
         .sidebar a:hover {
@@ -50,13 +57,28 @@
             color: white;
         }
 
+        /* 滚动箭头提示 */
+        .scroll-indicator {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #c9d1d9;
+            font-size: 16px;
+            pointer-events: none;
+            opacity: 0.7;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.4; }
+            30% { opacity: 1; }
+            100% { opacity: 0.4; }
+        }
+
         /* 主内容区域 */
         .main-content {
-            flex: 1;
             padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
         }
 
         .container {
@@ -64,15 +86,16 @@
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             padding: 40px;
-            width: 80%;
+            width: 100%;
             max-width: 800px;
-            margin-bottom: 30px;
+            margin: 0 auto 30px;
         }
 
         h1 {
             color: white;
             text-align: center;
             margin-bottom: 20px;
+            margin-top: 0; /* 移除默认顶部margin */
         }
 
         h2 {
@@ -104,6 +127,7 @@
             border-radius: 5px;
             text-decoration: none;
             margin-top: 20px;
+            transition: background-color 0.3s;
         }
 
         .turn-btn {
@@ -114,10 +138,16 @@
             border-radius: 5px;
             text-decoration: none;
             margin-top: 20px;
+            transition: background-color 0.3s;
         }
 
         .download-btn:hover {
             background-color: #0056b3;
+            text-decoration: none;
+        }
+
+        .turn-btn:hover {
+            background-color: #c8557a;
             text-decoration: none;
         }
 
@@ -136,26 +166,112 @@
             margin: 0 2px;
         }
 
-        /* 锚点目标元素样式 */
+        /* 锚点目标元素样式 - 增加顶部间距避免被遮挡 */
         .section-target {
             scroll-margin-top: 20px;
+            padding-top: 10px;
         }
 
+        /* 宽屏样式 - 目录在左侧 */
+        @media (min-width: 768px) {
+            body {
+                display: flex;
+                padding-top: 0;
+            }
+            
+            .sidebar {
+                width: 220px;
+                height: 100vh;
+                position: sticky;
+                top: 0;
+            }
+            
+            .sidebar-wrapper {
+                overflow-x: visible;
+            }
+            
+            .sidebar ul {
+                white-space: normal;
+            }
+            
+            .sidebar li {
+                display: block;
+            }
+            
+            .scroll-indicator {
+                display: none;
+            }
+            
+            .main-content {
+                flex: 1;
+            }
+        }
+
+        /* 竖屏样式 - 目录在顶部，可水平滚动 */
+        @media (max-width: 767px) {
+            body {
+                padding-top: 60px; /* 增加顶部内边距，为目录留出更多空间 */
+            }
+            
+            .sidebar {
+                width: 100%;
+                position: fixed;
+                top: 0;
+                left: 0;
+                z-index: 100;
+                height: 60px; /* 稍微增加目录高度 */
+            }
+            
+            .sidebar-wrapper {
+                height: 100%;
+            }
+            
+            .sidebar ul {
+                height: 100%;
+            }
+            
+            .sidebar li {
+                height: 100%;
+            }
+            
+            .sidebar a {
+                height: 100%;
+                box-sizing: border-box;
+                padding: 18px 20px; /* 调整内边距匹配高度 */
+            }
+            
+            .container {
+                padding: 30px 20px; /* 增加容器内边距 */
+                width: calc(100% - 40px);
+            }
+
+            /* 竖屏时专门调整锚点位置 */
+            .section-target {
+                scroll-margin-top: 100px; /* 大幅增加滚动边距 */
+                padding-top: 20px; /* 增加额外内边距 */
+            }
+
+            /* 为h1增加额外顶部空间 */
+            .section-target h1 {
+                padding-top: 10px;
+            }
+        }
     </style>
 </head>
 
 <body>
-    <!-- 左侧目录 -->
     <nav class="sidebar">
-        <ul>
-            <li><a href="#medal-lottery">Medal lottery 魔盒Pix</a></li>
-            <li><a href="#ai-project">AI 项目 - Utalk</a></li>
-        </ul>
+        <div class="sidebar-wrapper">
+            <ul>
+                <li><a href="#medal-lottery">Medal lottery 魔盒Pix</a></li>
+                <li><a href="#ai-project">AI 项目 - Utalk</a></li>
+            </ul>
+        </div>
+        <div class="scroll-indicator">&gt;</div>
     </nav>
 
-    <!-- 主内容区域 -->
     <div class="main-content">
-        <!-- Medal lottery 魔盒Pix 部分 -->
+
         <div class="container">
             <div id="medal-lottery" class="section-target">
                 <h1>Medal lottery 魔盒Pix</h1>
@@ -164,7 +280,6 @@
             </div>
         </div>
         
-        <!-- AI 项目部分 -->
         <div class="container">
             <div id="ai-project" class="section-target">
                 <h1>AI 项目 - Utalk -version 1.1</h1>
